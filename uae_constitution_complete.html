@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAE Constitution Guide - Complete Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .theme-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+
+        .theme-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .theme-title {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .theme-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .content-area.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .law-item {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .law-item:hover {
+            background: #f0f2ff;
+            transform: translateX(5px);
+        }
+
+        .law-number {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .law-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .law-simple {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .law-simple h4 {
+            color: #2e7d2e;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .law-example {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .law-example h4 {
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .back-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #5a67d8;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: #333;
+            text-align: center;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .themes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🇦🇪 UAE Constitution Guide</h1>
+            <div class="subtitle">Complete Constitution - Understanding Your Rights and Laws - Made Simple</div>
+        </header>
+
+        <div class="intro-text">
+            <h2>Welcome to the Complete UAE Constitution Guide</h2>
+            <p>This comprehensive guide covers all key articles of the UAE Constitution. We explain complex legal language in simple terms that anyone can understand. Click on any topic below to explore your rights and responsibilities as a resident of the UAE.</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search for laws, rights, or topics (e.g. 'freedom of speech', 'property rights', 'privacy')..." id="searchInput">
+        </div>
+
+        <div id="mainView">
+            <div class="themes-grid" id="themesGrid">
+                <!-- Theme cards will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="content-area" id="contentArea">
+            <button class="back-btn" onclick="showMainView()">← Back to Topics</button>
+            <div id="contentBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const themes = {
+            'principles-objectives': {
+                icon: '🏛️',
+                title: 'UAE Principles & Main Objectives',
+                desc: 'The foundation of the UAE - what the country stands for and its main goals.',
+                laws: [
+                    {
+                        number: 'Article 1',
+                        title: 'The UAE Federal Union',
+                        simple: 'The UAE is an independent country made up of seven emirates: Abu Dhabi, Dubai, Sharjah, Ajman, Umm Al-Quwain, Fujairah, and Ras Al-Khaimah.',
+                        example: 'Think of the UAE like a family of seven emirates working together as one nation, similar to how states work together in the United States.'
+                    },
+                    {
+                        number: 'Article 2',
+                        title: 'UAE Sovereignty',
+                        simple: 'The UAE has complete control over all land and waters within the borders of all seven emirates.',
+                        example: 'The UAE controls its airspace, territorial waters, and all land from the borders with Saudi Arabia and Oman to the Persian Gulf.'
+                    },
+                    {
+                        number: 'Article 6',
+                        title: 'Part of the Arab Nation',
+                        simple: 'The UAE is part of the greater Arab world, connected by religion, language, history, and shared destiny.',
+                        example: 'The UAE shares Arabic culture, Islamic heritage, and historical ties with other Arab countries like Saudi Arabia, Egypt, and Jordan.'
+                    },
+                    {
+                        number: 'Article 7',
+                        title: 'Official Religion and Language',
+                        simple: 'Islam is the official religion, Islamic law guides legislation, and Arabic is the official language.',
+                        example: 'Government documents are in Arabic, Islamic principles influence laws, and Islamic holidays are official holidays.'
+                    },
+                    {
+                        number: 'Article 9',
+                        title: 'Capital City',
+                        simple: 'Abu Dhabi City is the capital of the UAE.',
+                        example: 'Abu Dhabi is where the federal government, president, and major government institutions are located, like Washington D.C. in the USA.'
+                    }
+                ]
+            },
+            'social-economic-pillars': {
+                icon: '🏗️',
+                title: 'Social & Economic Foundations',
+                desc: 'The basic building blocks of UAE society - education, healthcare, work, and social support.',
+                laws: [
+                    {
+                        number: 'Article 14',
+                        title: 'Equality and Social Justice',
+                        simple: 'Everyone should be treated equally and fairly. Society should provide safety, security, and equal opportunities for all citizens.',
+                        example: 'Whether you\'re from Dubai or a remote area, you should have access to the same opportunities for education, healthcare, and employment.'
+                    },
+                    {
+                        number: 'Article 15',
+                        title: 'Family Protection',
+                        simple: 'The family is the foundation of society. Laws protect families based on religion, ethics, and patriotism.',
+                        example: 'Marriage laws, child protection services, and family support programs all work to keep families strong and stable.'
+                    },
+                    {
+                        number: 'Article 17',
+                        title: 'Right to Education',
+                        simple: 'Education is essential for progress. Primary education is mandatory and free at all levels for UAE citizens.',
+                        example: 'All Emirati children must attend school, and the government provides free education from kindergarten through university.'
+                    },
+                    {
+                        number: 'Article 19',
+                        title: 'Healthcare for All',
+                        simple: 'The community must provide medical care, disease prevention, and treatment to all citizens.',
+                        example: 'Public hospitals, vaccination programs, and health insurance ensure everyone can receive medical care when needed.'
+                    },
+                    {
+                        number: 'Article 20',
+                        title: 'Right to Work',
+                        simple: 'Work is important for society\'s development. The community should provide jobs and protect workers\' rights.',
+                        example: 'Labor laws protect workers from unfair treatment, ensure fair wages, and provide job training programs.'
+                    }
+                ]
+            },
+            'fundamental-rights': {
+                icon: '⚖️',
+                title: 'Fundamental Rights & Freedoms',
+                desc: 'Your basic rights as a person living in the UAE - freedom, equality, and protection.',
+                laws: [
+                    {
+                        number: 'Article 25',
+                        title: 'Equality Before the Law',
+                        simple: 'Everyone is equal in the eyes of the law. No discrimination based on origin, nationality, faith, or social status.',
+                        example: 'Whether you are Emirati, Indian, British, or any other nationality, the courts must treat you fairly and equally.'
+                    },
+                    {
+                        number: 'Article 26',
+                        title: 'Personal Freedom',
+                        simple: 'Personal freedom is guaranteed. No one can be arrested, searched, or detained except according to law. Torture is forbidden.',
+                        example: 'Police cannot arrest you without proper legal reasons. You cannot be detained indefinitely without charges or tortured.'
+                    },
+                    {
+                        number: 'Article 28',
+                        title: 'Presumption of Innocence',
+                        simple: 'You are considered innocent until proven guilty in a fair trial. You have the right to a lawyer.',
+                        example: 'If accused of a crime, the government must prove you did it. You can hire a lawyer or get one provided by the court.'
+                    },
+                    {
+                        number: 'Article 29',
+                        title: 'Freedom of Movement',
+                        simple: 'Citizens can move freely within the UAE and travel abroad, following the law.',
+                        example: 'You can travel from Dubai to Abu Dhabi freely, and leave the country unless there are legal restrictions.'
+                    },
+                    {
+                        number: 'Article 37',
+                        title: 'No Deportation of Citizens',
+                        simple: 'UAE citizens cannot be deported or exiled from their own country.',
+                        example: 'No matter what happens, if you\'re a UAE citizen, you always have the right to stay in your country.'
+                    }
+                ]
+            },
+            'expression-belief': {
+                icon: '💬',
+                title: 'Expression & Religious Freedom',
+                desc: 'Your rights to express opinions, practice religion, and share ideas.',
+                laws: [
+                    {
+                        number: 'Article 30',
+                        title: 'Freedom of Opinion',
+                        simple: 'You can have your own opinions and express them through speech, writing, or other means, within the law.',
+                        example: 'You can discuss politics with friends, write blog posts about social issues, but cannot spread false information or hate speech.'
+                    },
+                    {
+                        number: 'Article 31',
+                        title: 'Communication Privacy',
+                        simple: 'Freedom of communication by mail, telegraph, and other means is guaranteed. Communications are confidential.',
+                        example: 'Your phone calls, WhatsApp messages, and emails are private unless a court allows authorities to monitor them for legal reasons.'
+                    },
+                    {
+                        number: 'Article 32',
+                        title: 'Religious Freedom',
+                        simple: 'You can practice your religion freely according to accepted traditions, as long as it doesn\'t violate public policy or morals.',
+                        example: 'Christians can go to church, Hindus to temples, Muslims to mosques. You can pray, fast, and follow your religious customs.'
+                    },
+                    {
+                        number: 'Article 33',
+                        title: 'Freedom of Assembly',
+                        simple: 'Freedom of assembly and establishing associations is guaranteed within the law.',
+                        example: 'You can join clubs, form organizations, attend peaceful gatherings, but must follow regulations about permits and peaceful conduct.'
+                    }
+                ]
+            },
+            'privacy-home': {
+                icon: '🏠',
+                title: 'Privacy & Home Protection',
+                desc: 'Your rights to privacy in your home, communications, and personal life.',
+                laws: [
+                    {
+                        number: 'Article 36',
+                        title: 'Home Privacy',
+                        simple: 'Your home is sacred and protected. No one can enter without permission except in cases provided by law.',
+                        example: 'Police cannot search your house unless they have a warrant from a judge or you give permission.'
+                    },
+                    {
+                        number: 'Article 39',
+                        title: 'Property Protection',
+                        simple: 'Public confiscation of property is prohibited. Private property can only be taken by court judgment and in cases provided by law.',
+                        example: 'The government cannot just take your property. If they need it for public use, they must go through legal procedures and pay fair compensation.'
+                    },
+                    {
+                        number: 'Article 40',
+                        title: 'Rights of Foreigners',
+                        simple: 'Foreigners in the UAE enjoy rights and freedoms according to international agreements and treaties the UAE has signed.',
+                        example: 'Expat residents have protection under international human rights conventions and bilateral agreements between the UAE and their home countries.'
+                    },
+                    {
+                        number: 'Article 41',
+                        title: 'Right to Complaint',
+                        simple: 'You have the right to file complaints with authorities, including courts, if your rights and freedoms are violated.',
+                        example: 'If a government office treats you unfairly, you can file a complaint with higher authorities or take the matter to court.'
+                    }
+                ]
+            },
+            'work-business': {
+                icon: '💼',
+                title: 'Work & Business Rights',
+                desc: 'Your rights related to employment, choosing your profession, and business activities.',
+                laws: [
+                    {
+                        number: 'Article 21',
+                        title: 'Private Property Rights',
+                        simple: 'Private property is protected. You can only be deprived of property for public interest, according to law, and with fair compensation.',
+                        example: 'You can own a house, car, or business. If the government needs your land for a road, they must pay you fairly.'
+                    },
+                    {
+                        number: 'Article 22',
+                        title: 'Public Property Protection',
+                        simple: 'Public property belongs to everyone and must be protected. Citizens have a duty to protect public property.',
+                        example: 'Parks, beaches, public buildings belong to all residents. Damaging public property is illegal and punishable.'
+                    },
+                    {
+                        number: 'Article 34',
+                        title: 'Freedom to Choose Work',
+                        simple: 'Citizens are free to choose their work, profession, or trade within the law. Forced labor and slavery are prohibited.',
+                        example: 'You can choose to be a teacher, engineer, or start your own business, following licensing requirements. No one can force you to work.'
+                    },
+                    {
+                        number: 'Article 35',
+                        title: 'Public Service Opportunities',
+                        simple: 'Public office is open to all citizens equally. Public service is a national service for the public interest.',
+                        example: 'Any qualified citizen can apply for government jobs. Government employees must serve the public, not personal interests.'
+                    }
+                ]
+            },
+            'government-structure': {
+                icon: '🏛️',
+                title: 'Government Structure',
+                desc: 'How the UAE government is organized and how different parts work together.',
+                laws: [
+                    {
+                        number: 'Article 45',
+                        title: 'Federal Authorities',
+                        simple: 'The UAE government has five main parts: Supreme Council, President & Vice President, Council of Ministers, Federal National Council, and Federal Courts.',
+                        example: 'Like branches of government - the Supreme Council makes major decisions, Ministers run daily government, and courts handle justice.'
+                    },
+                    {
+                        number: 'Article 46',
+                        title: 'Federal Supreme Council',
+                        simple: 'The highest authority in the UAE, consisting of the Rulers of all seven emirates. Each emirate has one vote.',
+                        example: 'The seven rulers meet to make the most important decisions for the country, like a board of directors for the UAE.'
+                    },
+                    {
+                        number: 'Article 51',
+                        title: 'President and Vice President',
+                        simple: 'The Supreme Council elects a President and Vice President from among the rulers. They serve five-year terms.',
+                        example: 'The rulers choose one of themselves to be President (head of state) and another to be Vice President as backup.'
+                    },
+                    {
+                        number: 'Article 68',
+                        title: 'Federal National Council Composition',
+                        simple: 'The FNC has 40 members representing all emirates: Abu Dhabi (8), Dubai (8), Sharjah (6), Ras Al-Khaimah (6), and others (4 each).',
+                        example: 'Like a parliament where larger emirates have more representatives, similar to how larger states get more seats in the US House.'
+                    }
+                ]
+            },
+            'justice-courts': {
+                icon: '⚖️',
+                title: 'Justice & Court System',
+                desc: 'How the legal system works and your rights when dealing with courts.',
+                laws: [
+                    {
+                        number: 'Article 94',
+                        title: 'Independent Judiciary',
+                        simple: 'Justice is the basis of government. Judges are independent and follow only the law and their conscience.',
+                        example: 'When you go to court, judges decide based on law and evidence, not because of pressure from government or powerful people.'
+                    },
+                    {
+                        number: 'Article 99',
+                        title: 'Federal Supreme Court Powers',
+                        simple: 'The highest court resolves disputes between emirates and the federal government, and decides if laws follow the Constitution.',
+                        example: 'If Dubai and the federal government disagree about a law, the Federal Supreme Court makes the final decision.'
+                    },
+                    {
+                        number: 'Article 101',
+                        title: 'Final Court Judgments',
+                        simple: 'Federal Supreme Court decisions are final and binding on everyone. If a law violates the Constitution, it must be fixed.',
+                        example: 'When the highest court makes a decision, everyone must follow it - government, emirates, and individuals.'
+                    },
+                    {
+                        number: 'Article 108',
+                        title: 'Death Penalty Approval',
+                        simple: 'Death sentences by federal courts can only be carried out after the President of the UAE approves them.',
+                        example: 'Even if a court sentences someone to death, the President must personally review and approve before execution.'
+                    }
+                ]
+            }
+        };
+
+        let currentSearchResults = [];
+
+        function initializeApp() {
+            displayThemes();
+            setupSearch();
+        }
+
+        function displayThemes() {
+            const grid = document.getElementById('themesGrid');
+            grid.innerHTML = '';
+            
+            Object.entries(themes).forEach(([key, theme]) => {
+                const card = document.createElement('div');
+                card.className = 'theme-card';
+                card.onclick = () => showTheme(key);
+                
+                card.innerHTML = `
+                    <div class="theme-icon">${theme.icon}</div>
+                    <div class="theme-title">${theme.title}</div>
+                    <div class="theme-desc">${theme.desc}</div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function showTheme(themeKey) {
+            const theme = themes[themeKey];
+            const contentBody = document.getElementById('contentBody');
+            
+            let html = `<h2>${theme.icon} ${theme.title}</h2>`;
+            
+            theme.laws.forEach(law => {
+                html += `
+                    <div class="law-item">
+                        <div class="law-number">${law.number}</div>
+                        <div class="law-title">${law.title}</div>
+                        <div class="law-simple">
+                            <h4>📝 What this means in simple words:</h4>
+                            <p>${law.simple}</p>
+                        </div>
+                        <div class="law-example">
+                            <h4>💡 Real-life example:</h4>
+                            <p>${law.example}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            contentBody.innerHTML = html;
+            showContentArea();
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                if (query.length === 0) {
+                    showMainView();
+                    return;
+                }
+                
+                if (query.length >= 2) {
+                    performSearch(query);
+                }
+            });
+        }
+
+        function performSearch(query) {
+            currentSearchResults = [];
+            
+            Object.entries(themes).forEach(([themeKey, theme]) => {
+                theme.laws.forEach(law => {
+                    const searchText = `${law.title} ${law.simple} ${law.example} ${theme.title}`.toLowerCase();
+                    if (searchText.includes(query)) {
+                        currentSearchResults.push({
+                            theme: theme,
+                            law: law,
+                            themeKey: themeKey
+                        });
+                    }
+                });
+            });
+
+            displaySearchResults(query);
+        }
+
+        function displaySearchResults(query) {
+            const contentBody = document.getElementById('contentBody');
+            
+            if (currentSearchResults.length === 0) {
+                contentBody.innerHTML = `
+                    <div class="no-results">
+                        <h3>No results found for "${query}"</h3>
+                        <p>Try searching for terms like "privacy", "freedom", "property", "work", or "family"</p>
+                    </div>
+                `;
+            } else {
+                let html = `<h2>🔍 Search Results for "${query}" (${currentSearchResults.length} found)</h2>`;
+                
+                currentSearchResults.forEach(result => {
+                    const highlightedTitle = highlightText(result.law.title, query);
+                    const highlightedSimple = highlightText(result.law.simple, query);
+                    const highlightedExample = highlightText(result.law.example, query);
+                    
+                    html += `
+                        <div class="law-item">
+                            <div style="color: #667eea; font-size: 0.9rem; margin-bottom: 5px;">${result.theme.icon} ${result.theme.title}</div>
+                            <div class="law-number">${result.law.number}</div>
+                            <div class="law-title">${highlightedTitle}</div>
+                            <div class="law-simple">
+                                <h4>📝 What this means in simple words:</h4>
+                                <p>${highlightedSimple}</p>
+                            </div>
+                            <div class="law-example">
+                                <h4>💡 Real-life example:</h4>
+                                <p>${highlightedExample}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                contentBody.innerHTML = html;
+            }
+            
+            showContentArea();
+        }
+
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        function showContentArea() {
+            document.getElementById('mainView').style.display = 'none';
+            document.getElementById('contentArea').classList.add('active');
+        }
+
+        function showMainView() {
+            document.getElementById('mainView').style.display = 'block';
+            document.getElementById('contentArea').classList.remove('active');
+            document.getElementById('searchInput').value = '';
+            currentSearchResults = [];
+        }
+
+        // Initialize the app when page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
